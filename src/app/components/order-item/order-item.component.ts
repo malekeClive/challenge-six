@@ -25,13 +25,13 @@ export class OrderItemComponent implements OnInit {
   constructor(private orderService: OrderService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.categories = this.orderService.categories;
+    this.categories = [...this.orderService.categories];
     this.itemList = this.orderService.setItem(this.item.category);
 
     this.form = this.fb.group({
       category: [this.item.category],
       name: [this.item.name],
-      price: [this.item.price],
+      price: [{value: this.item.price, disabled: true}],
     });
 
     this.form.valueChanges.subscribe(val => {
@@ -40,10 +40,11 @@ export class OrderItemComponent implements OnInit {
     });
   }
 
-  getPrice(val:any): void {
+
+  getPrice(val: any): void {
     if (this.itemList.length != 0) {
       this.itemList.forEach(item => {
-        if(item.name == val.name) {
+        if (item.name == val.name) {
           this.form.value.price = item.price;
         }
       });

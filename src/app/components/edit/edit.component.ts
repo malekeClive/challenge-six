@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Item } from 'src/app/models/item';
 import { Order } from 'src/app/models/order';
 import { OrderService } from 'src/app/services/order.service';
@@ -24,8 +24,8 @@ export class EditComponent implements OnInit {
     this.items = [...this.order.items];
 
     this.createUserForm = this.fb.group({
-      customerName: [this.order ? this.order.customerName : ''],
-      email: [this.order ? this.order.email : ''],
+      customerName: [this.order ? this.order.customerName : '', {validators: [Validators.required]}],
+      email: [this.order ? this.order.email : '', {validators: [Validators.required, Validators.email]}],
     });
   }
 
@@ -57,6 +57,7 @@ export class EditComponent implements OnInit {
 
     this.orderService.onEditChanges(newOrder, this.orderIdx);
     this.orderService.sendClickEvent();
+    this.modalHandler();
   }
 
 }

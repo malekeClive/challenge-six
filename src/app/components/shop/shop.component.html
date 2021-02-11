@@ -1,9 +1,12 @@
-<button mat-button color="primary" (click)="setModal()">Create</button>
+<button mat-icon-button color="primary" aria-label="button add icon" (click)="setModal()">
+  <mat-icon>add_shopping_cart</mat-icon>
+  <span>Add new order</span>
+</button>
 <div class="cards">
   <mat-card class="card" *ngFor="let orderItem of orders; let idx=index">
     <mat-card-header>
       <mat-card-title>
-        &#36; {{orderItem.totalPrice}}
+        $ {{orderItem.totalPrice}}
       </mat-card-title>
       <mat-card-subtitle>
         By {{orderItem.customerName}} . {{orderItem.email}}
@@ -12,8 +15,15 @@
     <mat-card-content>
       <div class="line"></div>
       <div class="items" *ngFor="let item of orderItem.items">
-        <p>{{item.category}}</p>
-        <p>{{item.name}} . &#36; {{item.price}}</p>
+        <div class="item-wrapper">
+          <div class="icon">
+            <mat-icon>loyalty</mat-icon>
+          </div>
+          <div>
+            <p class="category">{{item.category|uppercase}}</p>
+            <p>{{item.name}} . &#36; {{item.price}}</p>
+          </div>
+        </div>
       </div>
     </mat-card-content>
     <mat-card-actions>

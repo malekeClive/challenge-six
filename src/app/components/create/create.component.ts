@@ -20,13 +20,8 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.createUserForm = this.fb.group({
-      customerName: ['', [
-        Validators.required,
-      ]],
-      email: ['', [
-        Validators.required,
-        Validators.email,
-      ]],
+      customerName: ['', {validators: [Validators.required]}],
+      email: ['', {validators: [Validators.required, Validators.email]}],
     });
 
     this.addNewItem();

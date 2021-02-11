@@ -10,5 +10,22 @@
       background-color: rgba(43, 43, 43, .2);
       margin-bottom: 10px;
     }
+
+    .category {
+      font-weight: 500;
+    }
+  }
+}
+
+.items {
+  margin: 20px;
+  
+  .item-wrapper {
+    display: flex;
+    align-items: center;
+  
+    .icon {
+      margin-right: 10px;
+    }
   }
 }

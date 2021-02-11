@@ -1,21 +1,30 @@
 <div [ngClass]="showModal ? 'modal-wrapper' : 'modal-wrapper-close'">
   <mat-card class="modal">
-    <mat-card-header>
-      <mat-card-title>
-        Create Order
-      </mat-card-title>
-    </mat-card-header>
+    <mat-card-title class="header">
+      Create Order
+    </mat-card-title>
     <mat-card-content>
-      <mat-form-field [formGroup]="createUserForm.value.customerName" (submit)="submitHandler()">
-        <input type="text" matInput formControlName="customerName" placeholder="john doe...">
-        <mat-error *ngIf="createUserForm.value.customerName.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-
-        <!-- <input type="text" formControlName="customerName">
-        <input type="text" formControlName="email"> -->
-
-        <!-- <app-order-item 
+      <form [formGroup]="createUserForm" (submit)="submitHandler()">
+        <mat-form-field class="full-width">
+          <mat-label>Customer name</mat-label>
+          <input type="text" matInput formControlName="customerName" placeholder="john doe...">
+          <mat-error
+          *ngIf="createUserForm.controls['customerName'].hasError('required')">
+          Customer name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field >
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input type="text" matInput formControlName="email" placeholder="johnDoe@gmail.com">
+          <mat-error
+          *ngIf="createUserForm.controls['email'].hasError('email') && !createUserForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="createUserForm.controls['email'].hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field >
+        <app-order-item 
           *ngFor="let item of items; let lastIdx = last; let idx = index" 
           (watchChangedItem)="changedItemHandler($event)"
           (storeItem)="addNewItem()"
@@ -24,9 +33,10 @@
           [isLastIdx]="lastIdx"
           [length]="items.length">
         </app-order-item>
-        <input type="submit" value="Submit">
-        <input type="button" value="Cancel" (click)="modalHandler()"> -->
-      </mat-form-field>
+
+        <button type="submit" mat-button color="primary">Submit</button>
+        <button mat-button color="warn" (click)="modalHandler()">Cancel</button>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>
