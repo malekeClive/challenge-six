@@ -1,0 +1,32 @@
+<div [ngClass]="showModal ? 'modal-wrapper' : 'modal-wrapper-close'">
+  <mat-card class="modal">
+    <mat-card-header>
+      <mat-card-title>
+        Create Order
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field [formGroup]="createUserForm.value.customerName" (submit)="submitHandler()">
+        <input type="text" matInput formControlName="customerName" placeholder="john doe...">
+        <mat-error *ngIf="createUserForm.value.customerName.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+
+        <!-- <input type="text" formControlName="customerName">
+        <input type="text" formControlName="email"> -->
+
+        <!-- <app-order-item 
+          *ngFor="let item of items; let lastIdx = last; let idx = index" 
+          (watchChangedItem)="changedItemHandler($event)"
+          (storeItem)="addNewItem()"
+          [item]="item" 
+          [idx]="idx"
+          [isLastIdx]="lastIdx"
+          [length]="items.length">
+        </app-order-item>
+        <input type="submit" value="Submit">
+        <input type="button" value="Cancel" (click)="modalHandler()"> -->
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</div>

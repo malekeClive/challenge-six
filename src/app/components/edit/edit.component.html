@@ -1,0 +1,24 @@
+<div [ngClass]="showModal ? 'modal-wrapper' : 'modal-wrapper-close'">
+  <div class="modal">
+    <h3>Edit Order</h3>
+    <form [formGroup]="createUserForm" (submit)="submitHandler()">
+      <input type="text" formControlName="customerName">
+      <input type="text" formControlName="email">
+
+    <div *ngIf="order">
+      <app-order-item 
+        *ngFor="let item of items; let lastIdx = last; let idx = index" 
+        (watchChangedItem)="changedItemHandler($event)"
+        (storeItem)="addNewItem()"
+        (removeItemByIndex)="removeItem($event)"
+        [item]="item" 
+        [idx]="idx"
+        [isLastIdx]="lastIdx"
+        [length]="items.length">
+      </app-order-item>
+    </div>
+    <input type="submit" value="Submit">
+    <input type="button" value="Cancel" (click)="modalHandler()">
+    </form>
+  </div>
+</div>

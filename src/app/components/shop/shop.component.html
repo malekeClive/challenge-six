@@ -1,0 +1,27 @@
+<button mat-button color="primary" (click)="setModal()">Create</button>
+<div class="cards">
+  <mat-card class="card" *ngFor="let orderItem of orders; let idx=index">
+    <mat-card-header>
+      <mat-card-title>
+        &#36; {{orderItem.totalPrice}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        By {{orderItem.customerName}} . {{orderItem.email}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="line"></div>
+      <div class="items" *ngFor="let item of orderItem.items">
+        <p>{{item.category}}</p>
+        <p>{{item.name}} . &#36; {{item.price}}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="deleteHandler(idx)">DELETE</button>
+      <button mat-button color="primary" (click)="editHandler(orderItem, idx, true)">EDIT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<app-create *ngIf="showModalCreate" [showModal]="showModalCreate" (closeModal)="closeModalCreate($event)"></app-create>
+<app-edit *ngIf="showModal" [order]="order" [orderIdx]="orderIdx" [showModal]="showModal" (closeModal)="closeModal($event)"></app-edit>
+

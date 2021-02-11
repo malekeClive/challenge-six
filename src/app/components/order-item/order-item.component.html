@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <select class="custom-select" formControlName="category" >
+    <option value="" disabled>Choose category</option>
+    <option *ngFor="let name of categories" [value]="name" [selected]="item.category == name">{{name}}</option>
+  </select>
+
+  <select class="custom-selects" formControlName="name">
+    <option value="" disabled>Choose item</option>
+    <option *ngFor="let stuff of itemList" [value]="stuff.name" [selected]="item.name == stuff.name">{{stuff.name}}</option>
+  </select>
+
+  <input type="text" formControlName="price">
+
+  <input type="button" (click)="addItem()" [hidden]="!isLastIdx" value="+">
+  <input type="button" (click)="removeItem()" [hidden]="length == 1" value="-">
+</div>
