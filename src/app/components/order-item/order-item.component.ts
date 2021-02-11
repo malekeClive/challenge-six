@@ -40,7 +40,6 @@ export class OrderItemComponent implements OnInit {
     });
   }
 
-
   getPrice(val: any): void {
     if (this.itemList.length != 0) {
       this.itemList.forEach(item => {

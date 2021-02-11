@@ -20,11 +20,15 @@
 
 
   <div class="input-wrapper">
-    <button mat-icon-button color="primary" aria-label="button add icon" (click)="addItem()" [hidden]="!isLastIdx">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-icon-button color="warn" aria-label="button clear icon" (click)="removeItem()" [hidden]="length == 1" value="-">
-      <mat-icon>clear</mat-icon>
-    </button>
+    <div [hidden]="!isLastIdx">
+      <button mat-icon-button color="primary" aria-label="button add icon" (click)="addItem()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div [hidden]="length == 1">
+      <button mat-icon-button color="warn" aria-label="button clear icon" (click)="removeItem()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
